@@ -6,7 +6,9 @@ REPO="rosemary-frontend"
 
 # Tag and message
 MESSAGE="v1.6.0"
+# MESSAGE="v1.6.1"
 TAGS=("ls-insight-${MESSAGE}" "ls-operator-${MESSAGE}")
+# TAGS=("ls-insight-${MESSAGE}")
 
 cd "../"
 cd "$PREFIX_FOLDER/$REPO"
@@ -28,7 +30,6 @@ for TAG in "${TAGS[@]}"; do
             echo "✅ Tag '$TAG' is correctly based on 'main'. Proceeding to push."
             git push origin "$TAG"
         fi
-        git push origin "$TAG"
     )
     if [ $? -ne 0 ]; then
         echo "⚠️ Error processing $REPO. Skipping to next repository."

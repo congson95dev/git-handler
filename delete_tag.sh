@@ -2,10 +2,9 @@
 
 # List of repository folders
 PREFIX_FOLDER="mac"
-# REPO_FOLDERS=("rosemary-frontend")
 REPO_FOLDERS=("lifescience_bff")
 
-TAGS=("v1.6.0-test")
+TAGS=("v1.6.0")
 
 for REPO in "${REPO_FOLDERS[@]}"; do
     for TAG in "${TAGS[@]}"; do
