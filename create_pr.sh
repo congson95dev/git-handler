@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # List of repository folders
-PREFIX_FOLDER="prefix-folder"
-REPO_FOLDERS=("repo-1" "repo-2")
+PREFIX_FOLDER="mac"
+REPO_FOLDERS=("rosemary-frontend" "lifescience_backend" "lifescience-operator-management-backend" "lifescience_bff" "lifescience-operator-management-bff" "lifescience-worker")
 
 # Tag and message
 BASE_BRANCH="main"
@@ -36,10 +36,19 @@ PR_LINKS=()
 
 for REPO in "${REPO_FOLDERS[@]}"; do
     echo "*** Creating PR for $REPO..."
-    
+
     cd "../"
     cd "$PREFIX_FOLDER/$REPO"
     git fetch
+
+    if [[ $REPO == *"rosemary-frontend"* ]]; then
+        FEATURE_BRANCH="ls-develop"
+        git reset --h
+    else
+        FEATURE_BRANCH="develop"
+    fi
+    
+    
     git checkout "$FEATURE_BRANCH"
     git pull origin "$FEATURE_BRANCH"
     PR_OUTPUT=$(gh pr create --base "$BASE_BRANCH" --head "$FEATURE_BRANCH" --title "$PR_TITLE" --body "$PR_BODY" 2>&1)
